@@ -2,23 +2,23 @@ import { Request, Response } from 'express'
 
 class AuthController {
   login(req: Request, res: Response) {
-    res.send('Login page')
+    res.json('Login page')
   }
 
   register(req: Request, res: Response) {
-    res.send('Register page')
+    res.json('Register page')
   }
 
   logout(req: Request, res: Response) {
-    res.send('Logout page')
+    res.json('Logout page')
   }
 
   forgot(req: Request, res: Response) {
-    res.send('Forgot page')
+    res.json('Forgot page')
   }
 
   reset(req: Request, res: Response) {
-    res.send('Reset page')
+    res.json('Reset page')
   }
 }
 

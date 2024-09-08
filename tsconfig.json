@@ -3,7 +3,7 @@
     /* Language and Environment */
     "target": "es2016",
     "module": "commonjs",
-    "rootDir": "./backend",
+    "rootDir": "./backend/src",
     "outDir": "./dist",
     "typeRoots": ["./node_modules/@types"],
     "esModuleInterop": true,
@@ -15,7 +15,7 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "isolatedModules": true,
-    
+
     /* Emit */
     "skipLibCheck": true
   },
