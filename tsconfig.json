@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "./backend",
+    "outDir": "./dist",
+    "typeRoots": ["./node_modules/@types"],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "isolatedModules": true,
+    
+    /* Emit */
+    "skipLibCheck": true
+  },
+  "include": ["backend/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
