@@ -8,8 +8,9 @@ const router = Router()
  * @swagger
  * /api/auth/login:
  *   get:
+ *     tags:
+ *      - Authentication
  *     summary: Login page
- *     tags: [Authentication]  // thêm tag để dễ quản lý
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -22,6 +23,8 @@ router.get('/login', authControler.login)
  * @swagger
  * /api/auth/register:
  *   get:
+ *     tags:
+ *      - Authentication
  *     summary: Register page
  *     security:
  *       - bearerAuth: []
@@ -35,6 +38,8 @@ router.get('/register', authControler.register)
  * @swagger
  * /api/auth/logout:
  *   get:
+ *     tags:
+ *      - Authentication
  *     summary: Logout page
  *     security:
  *       - bearerAuth: []
@@ -48,6 +53,8 @@ router.get('/logout', authControler.logout)
  * @swagger
  * /api/auth/forgot:
  *   get:
+ *     tags:
+ *      - Authentication
  *     summary: Forgot page
  *     security:
  *       - bearerAuth: []
@@ -61,6 +68,8 @@ router.get('/forgot', authControler.forgot)
  * @swagger
  * /api/auth/reset:
  *   get:
+ *     tags:
+ *      - Authentication
  *     summary: Reset page
  *     security:
  *       - bearerAuth: []

@@ -4,7 +4,6 @@ import connectDB from './config/db'
 import setupSwagger from './config/swagger'
 
 import router from './routes'
-import authRoute from './routes/auth'
 
 dotenv.config()
 const app = express()
@@ -13,7 +12,7 @@ const port = process.env.PORT || 5000
 
 app.use(express.json())
 
-app.use('/api/auth', authRoute)
+app.use('/api', router)
 setupSwagger(app)
 
 app.listen(port, () => {
