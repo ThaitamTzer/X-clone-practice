@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: X-Clone API
+  version: 1.0.0
+  description: API documentation for X-Clone project
+servers:
+  - url: http://localhost:5000
+    description: Development server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register page
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 'user@example.com'
+                password:
+                  type: string
+                  example: 'Password@123'
+                userName:
+                  type: string
+                  example: 'user'
+                fullName:
+                  type: string
+                  example: 'User Name'
+      responses:
+        201:
+          description: Created
+        500:
+          description: Internal server error
+  /api/auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login page
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                  example: 'user@example.com'
+                password:
+                  type: string
+                  example: 'Password@123'
+      responses:
+        200:
+          description: Successful response
+        404:
+          description: User not found
+        401:
+          description: Unauthorized
+        500:
+          description: Internal server error
+  /api/auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Logout page
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: 
+  /api/auth/forgot:
+    post:
+      tags:
+        - Authentication
+      summary: Forgot page
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Successful response
+        404:
+          description: User not found
+        500:
+          description: Internal server error
+  /api/auth/reset:
+    post:
+      tags:
+        - Authentication
+      summary: Reset page
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Successful response
+  /api/auth/refresh-token:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh token
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Successful response
+        401:
+          description: Unauthorized
+        500:
+          description: Internal server error

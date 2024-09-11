@@ -1,42 +1,11 @@
-import swaggerJsdoc from 'swagger-jsdoc'
+import YAML from 'yamljs'
 import swaggerUi from 'swagger-ui-express'
 import { Express } from 'express'
+import path from 'path'
 
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'X-Clone API',
-      version: '1.0.0',
-      description: 'API documentation for X-Clone project'
-    },
-    servers: [
-      {
-        url: 'http://localhost:5000',
-        description: 'Development server'
-      }
-    ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT'
-        }
-      }
-    },
-    security: [
-      {
-        bearerAuth: []
-      }
-    ]
-  },
-  apis: ['**/*.ts']
-}
-
-const specs = swaggerJsdoc(options)
-console.log(specs)
+const swaggerDocument = YAML.load(path.join(__dirname, '../../swagger.yaml'))
+console.log(swaggerDocument)
 
 export default function setupSwagger(app: Express) {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+  app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 }
