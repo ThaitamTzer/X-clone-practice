@@ -2,7 +2,6 @@ import { Request, Response } from 'express'
 import User from '../models/user'
 import bcrypt from 'bcryptjs'
 import generateTokenAndCookie, { generateToken } from '../../lib/utils/generateToken'
-import generateCode from '../../lib/utils/generateDigit'
 import sendEmail from '../../lib/utils/sendEmail'
 const HOST = process.env.HOST || 'http://localhost:5000'
 
@@ -84,7 +83,8 @@ class AuthController {
         userName,
         fullName,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        createdPassword: hashedPassword
       })
 
       if (newUser) {
@@ -222,7 +222,7 @@ class AuthController {
   async changePassword(req: Request, res: Response) {
     const { oldPassword, newPassword } = req.body
     try {
-      const user = await User.findById(req.body.userId)
+      const user = await User.findById(req.user._id)
       if (!user) {
         return res.status(400).json({ error: 'User not found' })
       }
@@ -250,6 +250,34 @@ class AuthController {
       res.status(200).json({ message: 'Password changed successfully' })
     } catch (error: any) {
       console.log('Error in changePassword controller: ', error.message)
+      res.status(500).json({ error: error.message })
+    }
+  }
+
+  async getProfile(req: Request, res: Response) {
+    try {
+      const user = await User.findById(req.user._id)
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' })
+      }
+      res.status(200).json({
+        user: {
+          id: user._id,
+          userName: user.userName,
+          fullName: user.fullName,
+          email: user.email,
+          followers: user.followers,
+          following: user.following,
+          avatar: user.avatar,
+          coverImg: user.coverImg,
+          bio: user.bio,
+          link: user.link,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+        }
+      })
+    } catch (error: any) {
+      console.log('Error in getProfile controller: ', error.message)
       res.status(500).json({ error: error.message })
     }
   }

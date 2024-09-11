@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import { Schema } from 'mongoose'
-import { Document } from 'mongoose'
 
 const userSchema = new Schema(
   {

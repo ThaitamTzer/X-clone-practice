@@ -1,6 +1,5 @@
-import { Document, ObjectId } from 'mongoose'
-
-export interface IUser {
+type IUser = {
+  _id?: string
   userName: string
   fullName: string
   email: string
@@ -8,11 +7,19 @@ export interface IUser {
   createdPassword?: string
   resetToken?: string
   resetTokenExpire?: number
-  followers: ObjectId[] // Refers to other users by their ObjectId
-  following: ObjectId[] // Refers to other users by their ObjectId
+  followers: string[]
+  following: string[]
   avatar?: string
   coverImg?: string
   bio?: string
   link?: string
   refreshToken?: string
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: IUser
+    }
+  }
 }
